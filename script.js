@@ -175,12 +175,12 @@ if (!prefersReducedMotion) {
             once: true,
             onEnter: () => {
                 const targetValue = +counter.getAttribute('data-target');
-                gsap.to(counter, {
-                    innerHTML: targetValue,
+                const proxy = { val: 0 };
+                gsap.to(proxy, {
+                    val: targetValue,
                     duration: 2,
-                    snap: { innerHTML: 1 },
                     onUpdate: function() {
-                        counter.innerHTML = Math.ceil(this.targets()[0].innerHTML);
+                        counter.innerHTML = Math.ceil(proxy.val);
                     },
                     onComplete: () => {
                         if (targetValue >= 5000) counter.innerHTML += '+';
@@ -235,6 +235,50 @@ if (!prefersReducedMotion) {
                 start: 'top 85%'
             }
         });
+    });
+
+    // Rooms Stagger
+    gsap.utils.toArray('.rooms-grid').forEach(grid => {
+        gsap.from(grid.querySelectorAll('.room-card'), {
+            y: 100,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: grid,
+                start: 'top 85%'
+            }
+        });
+    });
+
+    // Testimonials Stagger
+    gsap.utils.toArray('.testimonials-grid').forEach(grid => {
+        gsap.from(grid.querySelectorAll('.testimonial-card'), {
+            y: 60,
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'back.out(1.5)',
+            scrollTrigger: {
+                trigger: grid,
+                start: 'top 85%'
+            }
+        });
+    });
+
+    // Book Card Zoom In
+    gsap.from('.book-card', {
+        scale: 0.8,
+        opacity: 0,
+        y: 50,
+        duration: 1.2,
+        ease: 'power4.out',
+        scrollTrigger: {
+            trigger: '.book-section',
+            start: 'top 80%'
+        }
     });
 
     // 5. Chef Reveal
