@@ -9,9 +9,12 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Lenis CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
 </head>
 
 <body>
+    <div class="custom-cursor"></div>
     <div id="progressBar"></div>
     <header id="header">
         <nav class="navbar">
@@ -52,8 +55,11 @@
                 </div>
                 <div class="about-text scroll-reveal slide-left">
                     <h2>About Us</h2>
-                    <p>Nestled in the heart of the city, The Aurelia offers an exquisite blend of deep comfort and
-                        sophisticated design. Every detail is curated to provide an unforgettable stay.</p>
+                    <div class="about-lines">
+                        <p class="about-line">Nestled in the heart of the city, The Aurelia offers an exquisite</p>
+                        <p class="about-line">blend of deep comfort and sophisticated design.</p>
+                        <p class="about-line">Every detail is curated to provide an unforgettable stay.</p>
+                    </div>
                     <div class="stats-container">
                         <div class="stat-item">
                             <h3 class="counter" data-target="15">0</h3>
@@ -72,27 +78,29 @@
             </div>
         </section>
 
-        <section id="gallery" class="section bg-light">
+        <section id="gallery" class="section bg-light gallery-section">
             <div class="container">
                 <h2>Gallery</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item scroll-reveal slide-up">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant Interior">
+            </div>
+            <div class="gallery-wrapper">
+                <div class="gallery-track">
+                    <div class="gallery-item">
+                        <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant Interior"></div>
                     </div>
-                    <div class="gallery-item scroll-reveal slide-up delay-1">
-                        <img src="https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Suite">
+                    <div class="gallery-item">
+                        <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Suite"></div>
                     </div>
-                    <div class="gallery-item scroll-reveal slide-up delay-2">
-                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fine Dining">
+                    <div class="gallery-item">
+                        <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fine Dining"></div>
                     </div>
-                    <div class="gallery-item scroll-reveal slide-up">
-                        <img src="https://images.unsplash.com/photo-1561501900-3701fa6a0864?auto=format&fit=crop&w=800&q=80" alt="Hotel Lobby">
+                    <div class="gallery-item">
+                        <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1561501900-3701fa6a0864?auto=format&fit=crop&w=800&q=80" alt="Hotel Lobby"></div>
                     </div>
-                    <div class="gallery-item scroll-reveal slide-up delay-1">
-                        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Spa & Pool">
+                    <div class="gallery-item">
+                        <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Spa & Pool"></div>
                     </div>
-                    <div class="gallery-item scroll-reveal slide-up delay-2">
-                        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cocktail Bar">
+                    <div class="gallery-item">
+                        <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cocktail Bar"></div>
                     </div>
                 </div>
             </div>
@@ -201,6 +209,15 @@
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
+                    
+                    <div class="contact-form-container">
+                        <form id="contactForm">
+                            <div class="form-field"><input type="text" placeholder="Your Name" required></div>
+                            <div class="form-field"><input type="email" placeholder="Your Email" required></div>
+                            <div class="form-field"><textarea placeholder="Your Message" rows="4" required></textarea></div>
+                            <div class="form-field"><button type="submit" class="btn">Send Message</button></div>
+                        </form>
+                    </div>
 
                 </div>
             </div>
@@ -220,6 +237,10 @@
 
     <a href="#home" id="backToTop" class="back-to-top">&#8679;</a>
 
+    <!-- GSAP and Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="script.js"></script>
 </body>
 

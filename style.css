@@ -57,6 +57,36 @@ body {
     height: 4px;
     background-color: var(--gold);
     z-index: 10001;
+    transform-origin: left;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--gold);
+    pointer-events: none;
+    z-index: 10002;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .custom-cursor {
+        display: block;
+    }
+    body {
+        cursor: none;
+    }
+    a, button, .hamburger, .gallery-item {
+        cursor: none;
+    }
 }
 
 h1,
@@ -297,15 +327,15 @@ p {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 0.3s;
-}
-
-.about-image:hover img {
-    transform: scale(1.05);
+    transform: scale(0.8); /* Starting scale for GSAP */
 }
 
 .about-text {
     flex: 1;
+}
+
+.about-line {
+    overflow: hidden;
 }
 
 .stats-container {
@@ -333,58 +363,64 @@ p {
 }
 
 /* Scroll Reveal Classes */
-.scroll-reveal {
-    opacity: 0;
-    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+/* Gallery - Horizontal Scroll */
+.gallery-section {
+    overflow: hidden;
+    padding-bottom: 0;
 }
 
-.scroll-reveal.slide-right {
-    transform: translateX(-50px);
+.gallery-wrapper {
+    width: 100%;
+    overflow: hidden;
 }
 
-.scroll-reveal.slide-left {
-    transform: translateX(50px);
-}
-
-.scroll-reveal.slide-up {
-    transform: translateY(50px);
-}
-
-.scroll-reveal.visible {
-    opacity: 1;
-    transform: translate(0);
-}
-
-/* Gallery */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.gallery-track {
+    display: flex;
     gap: 20px;
+    padding: 0 5%;
+    width: max-content;
 }
 
 .gallery-item {
-    height: 300px;
+    width: 400px;
+    height: 500px;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.gallery-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+.img-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .gallery-item img {
-    width: 100%;
+    width: 130%; /* Extra width for parallax */
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transform: translateX(-15%); /* Center image */
+    transition: filter 0.4s ease;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.08);
+    filter: brightness(1.1);
 }
+
+@media (max-width: 768px) {
+    .gallery-track {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+    }
+    .gallery-item {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+/* Removed old gallery grid code */
 
 /* Menu Section */
 .menu-category-title {
@@ -497,12 +533,14 @@ p {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%); /* Start wiped out */
 }
 
 .chef-image img {
     width: 100%;
     height: auto;
     display: block;
+    transform: scale(1.2); /* For parallax inside wipe */
 }
 
 /* Contact Section */
@@ -532,6 +570,35 @@ p {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-field {
+    margin-bottom: 1.5rem;
+    overflow: hidden; /* for slide up animation */
+}
+
+.contact-form-container input,
+.contact-form-container textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    background: #fafafa;
+}
+
+.contact-form-container input:focus,
+.contact-form-container textarea:focus {
+    outline: none;
+    border-color: var(--gold);
 }
 
 /* Footer */
