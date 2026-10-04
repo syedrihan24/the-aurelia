@@ -303,4 +303,105 @@ if (contactForm) {
     });
 }
 
+// ===================================================================
+// HERO PARTICLE SYSTEM (gold dust / sparkles)
+// ===================================================================
+try {
+    if (!prefersReducedMotion) {
+        const particleCanvas = document.getElementById('heroParticles');
+        if (particleCanvas) {
+            const ctx = particleCanvas.getContext('2d');
+            const isMobile = window.innerWidth < 768;
+            const MAX_PARTICLES = isMobile ? 15 : 35;
+            let particles = [];
+            let animFrameId = null;
+            let isTabVisible = true;
 
+            function resizeCanvas() {
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    particleCanvas.width = hero.offsetWidth;
+                    particleCanvas.height = hero.offsetHeight;
+                }
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * particleCanvas.width;
+                    this.y = particleCanvas.height + Math.random() * 40;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedY = -(Math.random() * 0.6 + 0.2);
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.opacity = Math.random() * 0.6 + 0.2;
+                    this.fadeRate = Math.random() * 0.003 + 0.001;
+                    // Gold color variations
+                    const goldShift = Math.random() * 40;
+                    this.color = `rgba(${201 + goldShift}, ${162 + goldShift}, ${77 + goldShift * 0.5}, `;
+                }
+
+                update() {
+                    this.y += this.speedY;
+                    this.x += this.speedX;
+                    this.opacity -= this.fadeRate;
+
+                    if (this.opacity <= 0 || this.y < -10) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color + this.opacity + ')';
+                    ctx.fill();
+                }
+            }
+
+            // Initialize particles
+            for (let i = 0; i < MAX_PARTICLES; i++) {
+                const p = new Particle();
+                // Spread initial particles across the canvas height
+                p.y = Math.random() * particleCanvas.height;
+                particles.push(p);
+            }
+
+            function animateParticles() {
+                if (!isTabVisible) {
+                    animFrameId = null;
+                    return;
+                }
+                ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                animFrameId = requestAnimationFrame(animateParticles);
+            }
+
+            // Page Visibility API — pause when tab is hidden
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    isTabVisible = false;
+                } else {
+                    isTabVisible = true;
+                    if (!animFrameId) {
+                        animateParticles();
+                    }
+                }
+            });
+
+            // Start animation
+            animateParticles();
+        }
+    }
+} catch (e) {
+    // Silently fail — the page displays normally without particles
+    console.warn('Particle effect failed to initialize:', e);
+}

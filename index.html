@@ -19,7 +19,7 @@
     <header id="header">
         <nav class="navbar">
             <div class="logo">
-                <a href="#home">The Aurelia</a>
+                <a href="#home" class="shimmer-gold">The Aurelia</a>
             </div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
@@ -39,11 +39,12 @@
     <main>
         <section id="home" class="hero">
             <div class="hero-bg"></div>
+            <canvas id="heroParticles" aria-hidden="true"></canvas>
             <div class="hero-content">
-                <h1 class="animate-on-load">Where Every Stay Becomes a Story</h1>
+                <h1 class="animate-on-load shimmer-gold">Where Every Stay Becomes a Story</h1>
                 <p class="animate-on-load delay-1">Immerse yourself in unparalleled luxury and discover a haven of
                     tranquility.</p>
-                <a href="#about" class="btn animate-on-load delay-2">Book Your Stay</a>
+                <a href="#about" class="btn btn-shine animate-on-load delay-2">Book Your Stay</a>
             </div>
         </section>
 
@@ -54,7 +55,7 @@
                         alt="The Aurelia Interior">
                 </div>
                 <div class="about-text scroll-reveal slide-left">
-                    <h2>About Us</h2>
+                    <h2 class="shimmer-gold">About Us</h2>
                     <div class="about-lines">
                         <p class="about-line">Nestled in the heart of the city, The Aurelia offers an exquisite</p>
                         <p class="about-line">blend of deep comfort and sophisticated design.</p>
@@ -80,7 +81,7 @@
 
         <section id="gallery" class="section bg-light gallery-section">
             <div class="container">
-                <h2>Gallery</h2>
+                <h2 class="shimmer-gold">Gallery</h2>
             </div>
             <div class="gallery-wrapper">
                 <div class="gallery-track">
@@ -107,8 +108,13 @@
         </section>
 
         <section id="menu" class="section">
+            <div class="bg-orbs" aria-hidden="true">
+                <div class="bg-orb bg-orb--1"></div>
+                <div class="bg-orb bg-orb--2"></div>
+                <div class="bg-orb bg-orb--3"></div>
+            </div>
             <div class="container">
-                <h2>Our Menu</h2>
+                <h2 class="shimmer-gold">Our Menu</h2>
                 <p>Indulge in a culinary journey crafted with the finest ingredients by Chef Marco.</p>
                 <h3 class="menu-category-title">Appetizers</h3>
                 <div class="menu-grid-cards">
@@ -117,7 +123,7 @@
                         <div class="menu-card-content">
                             <h4>Truffle Arancini</h4>
                             <p>Crispy risotto balls with wild mushroom and truffle oil.</p>
-                            <span class="price">$18</span>
+                            <span class="price price-shine">$18</span>
                         </div>
                     </div>
                     <div class="menu-card scroll-reveal slide-up delay-1">
@@ -125,7 +131,7 @@
                         <div class="menu-card-content">
                             <h4>Heirloom Burrata</h4>
                             <p>Fresh burrata, basil pesto, balsamic reduction.</p>
-                            <span class="price">$22</span>
+                            <span class="price price-shine">$22</span>
                         </div>
                     </div>
                     <div class="menu-card scroll-reveal slide-up delay-2">
@@ -133,7 +139,7 @@
                         <div class="menu-card-content">
                             <h4>Beef Carpaccio</h4>
                             <p>Thinly sliced prime beef, capers, parmesan, arugula.</p>
-                            <span class="price">$26</span>
+                            <span class="price price-shine">$26</span>
                         </div>
                     </div>
                 </div>
@@ -145,7 +151,7 @@
                         <div class="menu-card-content">
                             <h4>Lobster Linguine</h4>
                             <p>Fresh Maine lobster, cherry tomatoes, white wine sauce.</p>
-                            <span class="price">$42</span>
+                            <span class="price price-shine">$42</span>
                         </div>
                     </div>
                     <div class="menu-card scroll-reveal slide-up delay-1">
@@ -153,7 +159,7 @@
                         <div class="menu-card-content">
                             <h4>Wagyu Filet Mignon</h4>
                             <p>8oz Wagyu beef, potato purée, asparagus, red wine jus.</p>
-                            <span class="price">$65</span>
+                            <span class="price price-shine">$65</span>
                         </div>
                     </div>
                     <div class="menu-card scroll-reveal slide-up delay-2">
@@ -161,7 +167,7 @@
                         <div class="menu-card-content">
                             <h4>Pan-Seared Sea Bass</h4>
                             <p>Mediterranean sea bass, lemon butter, roasted vegetables.</p>
-                            <span class="price">$38</span>
+                            <span class="price price-shine">$38</span>
                         </div>
                     </div>
                 </div>
@@ -171,7 +177,7 @@
         <section id="chef" class="section bg-light">
             <div class="container chef-container">
                 <div class="chef-text scroll-reveal slide-right">
-                    <h2>Meet Chef Marco Bellini</h2>
+                    <h2 class="shimmer-gold">Meet Chef Marco Bellini</h2>
                     <p class="chef-quote">"Cooking is not just about ingredients; it's about telling a story on a
                         plate."</p>
                     <p>With over two decades of culinary mastery across Europe, Chef Marco brings a symphony of flavors
@@ -192,8 +198,12 @@
         </section>
 
         <section id="contact" class="section">
+            <div class="bg-orbs" aria-hidden="true">
+                <div class="bg-orb bg-orb--1"></div>
+                <div class="bg-orb bg-orb--2"></div>
+            </div>
             <div class="container">
-                <h2>Contact Us</h2>
+                <h2 class="shimmer-gold">Contact Us</h2>
                 <div class="contact-container">
                     <div class="contact-info scroll-reveal slide-right">
                         <h3>Get in Touch</h3>
@@ -215,7 +225,7 @@
                             <div class="form-field"><input type="text" placeholder="Your Name" required></div>
                             <div class="form-field"><input type="email" placeholder="Your Email" required></div>
                             <div class="form-field"><textarea placeholder="Your Message" rows="4" required></textarea></div>
-                            <div class="form-field"><button type="submit" class="btn">Send Message</button></div>
+                            <div class="form-field"><button type="submit" class="btn btn-shine">Send Message</button></div>
                         </form>
                     </div>
 
@@ -225,6 +235,10 @@
     </main>
 
     <footer>
+        <div class="bg-orbs" aria-hidden="true">
+            <div class="bg-orb bg-orb--1"></div>
+            <div class="bg-orb bg-orb--2"></div>
+        </div>
         <div class="footer-content">
             <div class="social-icons">
                 <a href="#">FB</a>
